@@ -176,7 +176,7 @@ def generarReporte():
             d[col[0]] = row[idx]
         return d
 
-    conexionDB = connect("osep.s3db")
+    conexionDB = connect("db.s3db")
     conexionDB.row_factory = dict_factory # Forma avanzada de obtener resultados
     cursor = conexionDB.cursor()
 
