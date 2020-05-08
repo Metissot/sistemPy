@@ -2,15 +2,19 @@ from db import *
 from persona import *
 from reporte import *
 from so import *
-
 class main():
 	#constructor 
 	def __init__(self):
 		
 		self.opcion = 0
-		self.Logo = '''\n\n       		     ╔════════════════════════════╗ 
-                     ║ SISTEMA DE HISORIA CLINICA ║ 
-                     ╚════════════════════════════╝ '''
+		self.Logo = '''
+ ╔════════════════════════════════════════════════════════════════════════════════╗ 
+ ║                           SISTEMA DE CONSULTA                                  ║ 
+ ║                              INHABILITADOS                                     ║  
+ ║                                                                                ║
+ ╚════════════════════════════════════════════════════════════════════════════════╝
+ '''
+
 
 	#metodos 
 	def DibujarLogo(self):
@@ -24,17 +28,29 @@ class main():
 			self.opcion = int(input(' OPCION: '))
 			
 			if self.opcion == 1: # ALTA PERSONAS
-				limpiarConsola()
+				
+				Sop.limpiarConsola()
 				Principal.DibujarLogo()
-				AltaPer(Dni, Ape, Nom)
+				
+				# Meter datos
+				DO = int(input('	Ingrese Documento: '))
+
+				AP = input('	Ingrese Apellido: ')
+
+				NO = input('	Ingrese Nombre: ')
+				
+				IDAR = input('	Ingrese Area: ')
+				
+				Nper.AltaPer(DO, AP, NO, IDAR)
+				
 				Principal.ValidaOpcion()
 			if self.opcion == 2: # CONSULTA PERSONAS
-				limpiarConsola()
+				Sop.limpiarConsola()
 				Principal.DibujarLogo()
-				ConsultarPer()
+				Nper.ConsultarPer()
 				Principal.ValidaOpcion()
 			if self.opcion == 3:	# GENERAR REPORTE
-				limpiarConsola()
+				Sop.limpiarConsola()
 				Principal.DibujarLogo()
 				generarReporte()
 				AbrirPdf()
@@ -44,10 +60,15 @@ class main():
 			else: 
 				Principal.ValidaOpcion()
 		except ValueError:
-			
 			print(' formato de datos incorrecto ')
-			ValidaOpcion()
+			Sop.limpiarConsola()
+			Principal.DibujarLogo()
+			Principal.ValidaOpcion()
+
 Principal = main()
+Sop = Os()
+Nper = persona()
+Sop.limpiarConsola()
 Principal.DibujarLogo()
 Principal.ValidaOpcion()
 

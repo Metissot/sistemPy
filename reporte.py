@@ -17,7 +17,7 @@ El módulo *reportePDF* permite crear un reporte PDF sencillo.
 """
 
 from sqlite3 import connect
-import webbrowser as wb
+#import webbrowser as wb
 from arrow import utcnow, get
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import inch, mm
@@ -26,7 +26,7 @@ from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, Tabl
 from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_RIGHT
 from reportlab.lib.colors import black, purple, white
 from reportlab.pdfgen import canvas
-
+import os
 
 # ======================= CLASE reportePDF =========================
 
@@ -200,9 +200,11 @@ def generarReporte():
     reporte = reportePDF(titulo, cabecera, datos, nombrePDF).Exportar()
     print(reporte)
 def AbrirPdf():
-	wb.open_new(r'H:\pysis\LISTAPERSONAS.pdf')
-
+	#wb.open_new(r'\\LISTAPERSONAS.pdf')
+	os.popen('LISTAPERSONAS.pdf')
+	
 # ======================== LLAMAR FUNCIÓN ==========================
+
 
 #generarReporte()
 #AbrirPdf()
