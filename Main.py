@@ -15,35 +15,52 @@ class main():
  ╚════════════════════════════════════════════════════════════════════════════════╝
  '''
 
-
 	#metodos 
 	def DibujarLogo(self):
 		print(self.Logo)
 		
 	def ValidaOpcion(self):
-		print ('''	\n   |1 - ALTA PERSONA | '''+
-	'''|2 - CONSULTAR PERSONAS| |3 - GENERAR REPORTE|  |4 - SALIR| \n''')
+		
+		
+		print ('''
+			\n   |1 - ALTA PERSONA | |2 - CONSULTAR PERSONAS| |3 - GENERAR REPORTE|  |4 - SALIR| \n
+  _________________________________________________________________________________''')
 
 		try:
-			self.opcion = int(input(' OPCION: '))
+			self.opcion = int(input('  OPCION: '))
 			
 			if self.opcion == 1: # ALTA PERSONAS
 				
 				Sop.limpiarConsola()
-				Principal.DibujarLogo()
+				Nper.CrearVent()
+				#Principal.DibujarLogo()
 				
 				# Meter datos
-				DO = int(input('	Ingrese Documento: '))
+				##AP = input('	Ingrese Apellido: ')
 
-				AP = input('	Ingrese Apellido: ')
-
-				NO = input('	Ingrese Nombre: ')
+				#NO = input('	Ingrese Nombre: ')
 				
-				IDAR = input('	Ingrese Area: ')
+				#IDAR = input('	Ingrese Area: ')
 				
-				Nper.AltaPer(DO, AP, NO, IDAR)
+				
+				#Sop.limpiarConsola()
+				
+			#	Principal.DibujarLogo()
+				
+			#	print('''	                            _____________________              
+				 
+			#	'''+str(DO)+'  '+AP+'  '+NO+'  '+IDAR+'''
+          #    __________________________________________________________________''')
+				
+				
+			#	Preg = input('\n 	Grabar ?    1 = Si  2 = Modificar   ')
+				
+				
+								
+			#	Nper.AltaPer(DO, AP, NO, IDAR)
 				
 				Principal.ValidaOpcion()
+				
 			if self.opcion == 2: # CONSULTA PERSONAS
 				Sop.limpiarConsola()
 				Principal.DibujarLogo()
@@ -55,8 +72,8 @@ class main():
 				generarReporte()
 				AbrirPdf()
 				Principal.ValidaOpcion()
-			if self.opcion == 4: # SALIR
-				quit()
+			if self.opcion == 4: # ejecutar grafico
+				Nper.CrearVent()
 			else: 
 				Principal.ValidaOpcion()
 		except ValueError:
@@ -65,6 +82,7 @@ class main():
 			Principal.DibujarLogo()
 			Principal.ValidaOpcion()
 
+		# INSTANCIAMOS 
 Principal = main()
 Sop = Os()
 Nper = persona()
