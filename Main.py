@@ -1,38 +1,70 @@
 from db import *
+from tkinter import *
 from persona import *
 from reporte import *
 from so import *
 class main():
 	#constructor 
 	def __init__(self):
+		self.winp = Tk()
+		self.winp.title('SISTEMA DE CONSULTAS DE INHABILITADOS')
+		self.winp.geometry('800x600')
+		#imagen de fondo
+		self.Imagebg = PhotoImage(file='T148.gif')
+		self.LblFondo = Label(self.winp, image = self.Imagebg, bd = 0)
+		self.LblFondo.place(x = 0, y = 0)
 		
-		self.opcion = 0
-		self.Logo = '''
- ╔════════════════════════════════════════════════════════════════════════════════╗ 
- ║                           SISTEMA DE CONSULTA                                  ║ 
- ║                              INHABILITADOS                                     ║  
- ║                                                                                ║
- ╚════════════════════════════════════════════════════════════════════════════════╝
- '''
+		# CRAMOS BARRA DE MENU PRINCIPAL
+		self.Bmenu = Menu(self.winp)
+		
+		# CREAMOS LOS MENU 
+		self.mnuPersonas = Menu(self.Bmenu)
+		self.mnuReportes = Menu(self.Bmenu)
+		self.mnuSalir = Menu(self.Bmenu)
+		
+		
+		#COMANDOS DE LOS MENUS
+		
+		#PERSONAS
+		self.mnuPersonas.add_command(label='ALTA PERSONAS', command = self.abrirABMper)
+		self.mnuPersonas.add_command(label='CONSULTAR PERSONAS')
+		#REPORTES
+		self.mnuReportes.add_command(label='GENERAR REPORTE')
+		#SALIR 
+		self.mnuSalir.add_command(label='Salir', command = self.Salir)
+		
+		#AGREGAMOS MENU A LA BARRA 
+		self.Bmenu.add_cascade(label='PERSONAS', menu = self.mnuPersonas)
+		self.Bmenu.add_cascade(label='REPORTES', menu = self.mnuReportes)
+		self.Bmenu.add_cascade(label='SALIR', menu = self.mnuSalir)
+		self.winp.config(menu = self.Bmenu)
+		self.winp.config(background = '#00CCFF')
+		
+		self.winp.mainloop()
+		
+		#self.opcion = 0
+		
 
 	#metodos 
 	def DibujarLogo(self):
 		print(self.Logo)
+	
+	def abrirABMper(self):
+		Nper = persona()
+	
+	def Salir(self):
+		quit(self)
 		
 	def ValidaOpcion(self):
 		
 		
-		print ('''
-			\n   |1 - ALTA PERSONA | |2 - CONSULTAR PERSONAS| |3 - GENERAR REPORTE|  |4 - SALIR| \n
-  _________________________________________________________________________________''')
-
+		'''
 		try:
 			self.opcion = int(input('  OPCION: '))
 			
-			if self.opcion == 1: # ALTA PERSONAS
+			if self.opcion == 1:# ALTA PERSONAS
 				
-				Sop.limpiarConsola()
-				Nper.CrearVent()
+				
 				#Principal.DibujarLogo()
 				
 				# Meter datos
@@ -42,23 +74,7 @@ class main():
 				
 				#IDAR = input('	Ingrese Area: ')
 				
-				
-				#Sop.limpiarConsola()
-				
-			#	Principal.DibujarLogo()
-				
-			#	print('''	                            _____________________              
-				 
-			#	'''+str(DO)+'  '+AP+'  '+NO+'  '+IDAR+'''
-          #    __________________________________________________________________''')
-				
-				
-			#	Preg = input('\n 	Grabar ?    1 = Si  2 = Modificar   ')
-				
-				
-								
-			#	Nper.AltaPer(DO, AP, NO, IDAR)
-				
+	
 				Principal.ValidaOpcion()
 				
 			if self.opcion == 2: # CONSULTA PERSONAS
@@ -73,7 +89,7 @@ class main():
 				AbrirPdf()
 				Principal.ValidaOpcion()
 			if self.opcion == 4: # ejecutar grafico
-				Nper.CrearVent()
+				quit()
 			else: 
 				Principal.ValidaOpcion()
 		except ValueError:
@@ -81,12 +97,14 @@ class main():
 			Sop.limpiarConsola()
 			Principal.DibujarLogo()
 			Principal.ValidaOpcion()
-
+'''
+	
+	
 		# INSTANCIAMOS 
 Principal = main()
-Sop = Os()
-Nper = persona()
-Sop.limpiarConsola()
-Principal.DibujarLogo()
-Principal.ValidaOpcion()
+#Sop = Os()
+#Nper = persona()
+#Sop.limpiarConsola()
+#Principal.DibujarLogo()
+#Principal.ValidaOpcion()
 

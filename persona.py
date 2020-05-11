@@ -1,18 +1,11 @@
 from db import *
 from tkinter import ttk
+from tkinter import messagebox
 from tkinter import *
 class persona():
-	
-	
-	
-	def __init__(self):
-		self.Dni = 0
-		self.Ape = ''
-		self.Nom = ''
-		self.Are = 0
-		self.mensajePer = '	\n	ALTA DE PERSONAS \n'
 		
-	def CrearVent(self):
+	def __init__(self):
+		
 		
 		self.win = Tk()
 		self.win.title('ABM PERSONAS')
@@ -20,10 +13,10 @@ class persona():
 		
 		#creamos un frame (contenedor)
 		self.Lframe = LabelFrame(self.win, text='Alta Personas' )
-		self.Lframe.grid(row = 0, column = 0, columnspan = 3, pady = 20)
+		self.Lframe.grid(row = 0, column = 0, columnspan = 10, pady = 20)
 		
 		#Caja de texto Documento
-		self.LblDoc = Label(self.Lframe, text='Ingrese Documento: ')
+		self.LblDoc = Label(self.Lframe, text='  Documento: ')
 		self.LblDoc.grid(row=1, column= 1)
 		self.TxtDoc = Entry(self.Lframe)
 		self.TxtDoc.grid(row=1,column=2)
@@ -47,43 +40,67 @@ class persona():
 		self.TxtAre.grid(row=4,column=2)
 		
 		#creamos Boton
-		self.BtnGraba = ttk.Button(self.Lframe, text='Grabar', command = self.AltaPer)
+		self.BtnGraba = ttk.Button(self.Lframe, text='Grabar', command = self.VerifTxt)
 		self.BtnGraba.grid(row = 5, column = 2, columnspan = 2, sticky = W + E)
+		
+		self.LblInfo = Label(self.Lframe, text='')
+		self.LblInfo.grid(row=1, column= 1)
 		
 		
 		self.TxtDoc.focus()
+		
+		#self.win.config(background = '#58ACFA')
 		self.win.mainloop()
 		
-	def VerifTxt(self):
-		pass
-			
-			
-		
-		
-	def AltaPer(self):
 		self.Dni = self.TxtDoc.get()
 		self.Ape = self.TxtApe.get()
 		self.Nom = self.TxtNom.get()
 		self.Are = self.TxtAre.get()
 		
-				
+	def CrearVent(self):
+		pass
+		
+		
+		
+	def VerifTxt(self):
+		
+		
+		if self.TxtDoc.get() == '':
+			messagebox.showinfo("Atencion", "Debe ingresar un DNI")
+			self.TxtDoc.focus()
+		elif self.TxtApe.get() == '':	
+			messagebox.showinfo("Atencion", "Debe ingresar un Apellido")
+			
+		elif self.TxtNom.get() == '':	
+			messagebox.showinfo("Atencion", "Debe ingresar un Nombre") 
+		else :
+			self.AltaPer()
+		
+	def AltaPer(self):
+		
+		self.Dni = self.TxtDoc.get()
+		self.Ape = self.TxtApe.get()
+		self.Nom = self.TxtNom.get()
+		self.Are = self.TxtAre.get()
+						
 		try:
 			cursor.execute("INSERT INTO PERSONAS VALUES " \
 			"(?, ?, ?, ?)", (self.Dni, self.Ape, self.Nom, self.Are))
 		
 		
 			conexion.commit()# Guardamos los cambios haciendo un commit
-			print('	\n Se grabo en la Base de datos correctamente	\n')
+			messagebox.showinfo("Atencion", "DATOS GRABADOS")
 			conexion.close()
-		
+			quit()
 		except sqlite3.IntegrityError:
-			print('\n ERROR: EL DNI DE LA PERSONA YA ESTA CARGADA EN LA BASE DE DATOS \n')
+			messagebox.showinfo("Atencion", "EL DNI DE LA PERSONA YA ESTA CARGADA EN LA BASE DE DATOS")
+			
 			
 			
 			
 	def ConsultarPer(self):
 		
-		print("\n\n LISTA DE PERSONAS \n\n")
+		
 
 		conexion = sqlite3.connect('osep.s3db')
 		cursor.execute("SELECT * FROM PERSONAS")
@@ -99,4 +116,4 @@ class persona():
 		
 
 #per = persona()
-#per.CrearVent()
+#per.AltaPer()
