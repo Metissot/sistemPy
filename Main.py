@@ -2,6 +2,7 @@ from db import *
 from tkinter import *
 from persona import *
 from reporte import *
+from oficio import *
 from so import *
 class main():
 	#constructor 
@@ -9,6 +10,8 @@ class main():
 		self.winp = Tk()
 		self.winp.title('SISTEMA DE CONSULTAS DE INHABILITADOS')
 		self.winp.geometry('800x600')
+        
+
 		#imagen de fondo
 		self.Imagebg = PhotoImage(file='T148.gif')
 		self.LblFondo = Label(self.winp, image = self.Imagebg, bd = 0)
@@ -17,29 +20,36 @@ class main():
 		# CRAMOS BARRA DE MENU PRINCIPAL
 		self.Bmenu = Menu(self.winp)
 		
-		# CREAMOS LOS MENU 
-		self.mnuPersonas = Menu(self.Bmenu)
-		self.mnuReportes = Menu(self.Bmenu)
-		self.mnuSalir = Menu(self.Bmenu)
-		
-		
-		#COMANDOS DE LOS MENUS
-		
+        # CREAMOS LOS MENU 
+		self.mnuReportes = Menu(self.Bmenu, tearoff=0)
+
+		self.mnuPersonas = Menu(self.Bmenu, tearoff=0)
+
+		self.mnuSalir = Menu(self.Bmenu, tearoff=0)
+   
+		self.mnuOficio = Menu(self.Bmenu, tearoff=0)
+        
 		#PERSONAS
 		self.mnuPersonas.add_command(label='ALTA PERSONAS', command = self.abrirABMper)
 		self.mnuPersonas.add_command(label='CONSULTAR PERSONAS')
-		#REPORTES
+		
+        #OFICIOS
+		self.mnuOficio.add_command(label='ALTA OFICIOS', command = self.AbrirOficio)
+
+        #REPORTES
 		self.mnuReportes.add_command(label='GENERAR REPORTE')
 		#SALIR 
 		self.mnuSalir.add_command(label='Salir', command = self.Salir)
 		
 		#AGREGAMOS MENU A LA BARRA 
 		self.Bmenu.add_cascade(label='PERSONAS', menu = self.mnuPersonas)
+		self.Bmenu.add_cascade(label='OFICIOS', menu = self.mnuOficio)
 		self.Bmenu.add_cascade(label='REPORTES', menu = self.mnuReportes)
 		self.Bmenu.add_cascade(label='SALIR', menu = self.mnuSalir)
 		self.winp.config(menu = self.Bmenu)
 		self.winp.config(background = '#00CCFF')
-		
+		self.winp.iconbitmap('01.ico')
+		self.winp.resizable(0,0)
 		self.winp.mainloop()
 		
 		#self.opcion = 0
@@ -51,54 +61,15 @@ class main():
 	
 	def abrirABMper(self):
 		Nper = persona()
-	
+		
+	def AbrirOficio(self):
+		ofi = oficio()
+			
 	def Salir(self):
-		quit(self)
+		quit()
 		
 	def ValidaOpcion(self):
-		
-		
-		'''
-		try:
-			self.opcion = int(input('  OPCION: '))
-			
-			if self.opcion == 1:# ALTA PERSONAS
-				
-				
-				#Principal.DibujarLogo()
-				
-				# Meter datos
-				##AP = input('	Ingrese Apellido: ')
-
-				#NO = input('	Ingrese Nombre: ')
-				
-				#IDAR = input('	Ingrese Area: ')
-				
-	
-				Principal.ValidaOpcion()
-				
-			if self.opcion == 2: # CONSULTA PERSONAS
-				Sop.limpiarConsola()
-				Principal.DibujarLogo()
-				Nper.ConsultarPer()
-				Principal.ValidaOpcion()
-			if self.opcion == 3:	# GENERAR REPORTE
-				Sop.limpiarConsola()
-				Principal.DibujarLogo()
-				generarReporte()
-				AbrirPdf()
-				Principal.ValidaOpcion()
-			if self.opcion == 4: # ejecutar grafico
-				quit()
-			else: 
-				Principal.ValidaOpcion()
-		except ValueError:
-			print(' formato de datos incorrecto ')
-			Sop.limpiarConsola()
-			Principal.DibujarLogo()
-			Principal.ValidaOpcion()
-'''
-	
+		pass
 	
 		# INSTANCIAMOS 
 Principal = main()

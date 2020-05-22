@@ -9,47 +9,49 @@ class persona():
 		
 		self.win = Tk()
 		self.win.title('ABM PERSONAS')
-		self.win.geometry('480x240')
+		self.win.geometry('480x350')
+		self.win.config(pady = 50 , padx = 80, bg = 'Black')
 		
 		#creamos un frame (contenedor)
-		self.Lframe = LabelFrame(self.win, text='Alta Personas' )
-		self.Lframe.grid(row = 0, column = 0, columnspan = 10, pady = 20)
+		self.Lframe = LabelFrame(self.win, text='Alta Personas', pady = 5, padx = 5, bd = 15)
+		self.Lframe.grid(row = 0, column = 3)
 		
 		#Caja de texto Documento
-		self.LblDoc = Label(self.Lframe, text='  Documento: ')
+		self.LblDoc = Label(self.Lframe, text='Documento: * ')
 		self.LblDoc.grid(row=1, column= 1)
 		self.TxtDoc = Entry(self.Lframe)
 		self.TxtDoc.grid(row=1,column=2)
 		
 		# caja de texto Apellido 
-		self.LblApe = Label(self.Lframe, text='Ingrese Apellido: ')
-		self.LblApe.grid(row=2, column= 1)
+		self.LblApe = Label(self.Lframe, text='Apellido:  ')
+		self.LblApe.grid(row=3, column= 1)
 		self.TxtApe = Entry(self.Lframe)
-		self.TxtApe.grid(row=2,column=2)
+		self.TxtApe.grid(row=3,column=2)
 		
 		# caja de texto Nombre 
-		self.LblNom = Label(self.Lframe, text='Ingrese Nombre: ')
-		self.LblNom.grid(row=3, column= 1)
+		self.LblNom = Label(self.Lframe, text='Nombre:  ')
+		self.LblNom.grid(row=5, column= 1)
 		self.TxtNom = Entry(self.Lframe)
-		self.TxtNom.grid(row=3,column=2)
+		self.TxtNom.grid(row=5,column=2)
 		
 		# caja de texto Area 
-		self.LblAre = Label(self.Lframe, text='Ingrese Area: ')
-		self.LblAre.grid(row=4, column= 1)
+		self.LblAre = Label(self.Lframe, text='N Licencia de Conducir :  ')
+		self.LblAre.grid(row=7, column= 1)
 		self.TxtAre = Entry(self.Lframe)
-		self.TxtAre.grid(row=4,column=2)
+		self.TxtAre.grid(row=7,column=2)
 		
 		#creamos Boton
 		self.BtnGraba = ttk.Button(self.Lframe, text='Grabar', command = self.VerifTxt)
-		self.BtnGraba.grid(row = 5, column = 2, columnspan = 2, sticky = W + E)
+		self.BtnGraba.grid(row = 9, column = 2, columnspan = 2, sticky = W + E)
 		
 		self.LblInfo = Label(self.Lframe, text='')
-		self.LblInfo.grid(row=1, column= 1)
+		self.LblInfo.grid(row=11, column= 2)
 		
 		
 		self.TxtDoc.focus()
 		
 		#self.win.config(background = '#58ACFA')
+		self.win.resizable(0,0)
 		self.win.mainloop()
 		
 		self.Dni = self.TxtDoc.get()
@@ -63,18 +65,23 @@ class persona():
 		
 		
 	def VerifTxt(self):
-		
+		self.LblInfo.config(text= "")
 		
 		if self.TxtDoc.get() == '':
-			messagebox.showinfo("Atencion", "Debe ingresar un DNI")
+			#messagebox.showinfo("Atencion", "Debe ingresar un DNI")
+			self.LblInfo.config(text= "Debe ingresar un DNI")
 			self.TxtDoc.focus()
 		elif self.TxtApe.get() == '':	
-			messagebox.showinfo("Atencion", "Debe ingresar un Apellido")
+			#messagebox.showinfo("Atencion", "Debe ingresar un Apellido")
+			self.LblInfo.config(text= "Debe ingresar Apellido")
 			
 		elif self.TxtNom.get() == '':	
-			messagebox.showinfo("Atencion", "Debe ingresar un Nombre") 
+			#messagebox.showinfo("Atencion", "Debe ingresar un Nombre") 
+			self.LblInfo.config(text= "Debe ingresar nombre")
 		else :
 			self.AltaPer()
+		
+		
 		
 	def AltaPer(self):
 		
@@ -82,27 +89,32 @@ class persona():
 		self.Ape = self.TxtApe.get()
 		self.Nom = self.TxtNom.get()
 		self.Are = self.TxtAre.get()
-						
+		#CON SQLITE				
+		#cursor.execute("INSERT INTO personas VALUES " \
+		#"(?, ?, ?, ?)", (self.Dni, self.Ape, self.Nom, self.Are))
+		
+		# CON MYSQL
 		try:
-			cursor.execute("INSERT INTO PERSONAS VALUES " \
-			"(?, ?, ?, ?)", (self.Dni, self.Ape, self.Nom, self.Are))
-		
-		
+			conectar()
+			cursor.execute("insert into personas (DNI_PER, APE_PER, NOM_PER, N_LICPER) values (%s, %s, %s, %s)" , [self.Dni,self.Ape,self.Nom,self.Are])
 			conexion.commit()# Guardamos los cambios haciendo un commit
-			messagebox.showinfo("Atencion", "DATOS GRABADOS")
+			self.LblInfo.config(text= "DATOS GRABADOS")
+			self.DesTxt()
 			conexion.close()
-			quit()
-		except sqlite3.IntegrityError:
-			messagebox.showinfo("Atencion", "EL DNI DE LA PERSONA YA ESTA CARGADA EN LA BASE DE DATOS")
+			#self.win.destroy()
+		except mysql.connector.errors.IntegrityError:
+			#messagebox.showinfo("Atencion", "EL DNI DE LA PERSONA YA ESTA CARGADA EN LA BASE DE DATOS")
+			self.LblInfo.config(text= "EL DNI YA ESTA CARGADO")
 			
-			
+	def DesTxt(self):
+		self.TxtDoc.config(state=DISABLED)		
 			
 			
 	def ConsultarPer(self):
 		
 		
 
-		conexion = sqlite3.connect('osep.s3db')
+		#conexion = sqlite3.connect('osep.s3db')
 		cursor.execute("SELECT * FROM PERSONAS")
 		#print(cursor)
 		rows_per = cursor.fetchall()# Recorremos el primer registro con el método fetchone, devuelve una tupla
@@ -116,4 +128,4 @@ class persona():
 		
 
 #per = persona()
-#per.AltaPer()
+#self.ConsultaPer()
