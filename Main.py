@@ -20,9 +20,10 @@ class main():
 		# CRAMOS BARRA DE MENU PRINCIPAL
 		self.Bmenu = Menu(self.winp)
 		
+		
         # CREAMOS LOS MENU 
 		self.mnuReportes = Menu(self.Bmenu, tearoff=0)
-
+		self.mnuReportes.config(bg = 'black')
 		self.mnuPersonas = Menu(self.Bmenu, tearoff=0)
 
 		self.mnuSalir = Menu(self.Bmenu, tearoff=0)
@@ -47,17 +48,16 @@ class main():
 		self.Bmenu.add_cascade(label='REPORTES', menu = self.mnuReportes)
 		self.Bmenu.add_cascade(label='SALIR', menu = self.mnuSalir)
 		self.winp.config(menu = self.Bmenu)
-		self.winp.config(background = '#00CCFF')
+		
 		self.winp.iconbitmap('01.ico')
 		self.winp.resizable(0,0)
+	
+		self.winp.config(bg = 'black')
 		self.winp.mainloop()
-		
 		#self.opcion = 0
 		
 
 	#metodos 
-	def DibujarLogo(self):
-		print(self.Logo)
 	
 	def abrirABMper(self):
 		Nper = persona()
@@ -68,8 +68,7 @@ class main():
 	def Salir(self):
 		quit()
 		
-	def ValidaOpcion(self):
-		pass
+	
 	
 		# INSTANCIAMOS 
 Principal = main()

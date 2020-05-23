@@ -16,8 +16,8 @@ from tkinter import *
 def fun():
 	
 
-	texto ='hola'
-	TxtBox2.insert(1,texto)
+	
+	TxtBox2.insert(1, (1,2))
 
 
 
