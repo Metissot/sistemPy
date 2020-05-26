@@ -116,7 +116,7 @@ class persona():
 			#self.win.destroy()
 		except mysql.connector.errors.IntegrityError:
 			#messagebox.showinfo("Atencion", "EL DNI DE LA PERSONA YA ESTA CARGADA EN LA BASE DE DATOS")
-			self.LblInfo.config(text= "EL DNI YA ESTA CARGADO")
+			self.LblInfo.config(text= "LA PERSONACON ESE DNI YA TIENE UN REGISTRO EN LA BASE DE DATOS")
 			
 	def DesTxt(self):
 		self.TxtDoc.config(state=DISABLED)		

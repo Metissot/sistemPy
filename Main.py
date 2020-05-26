@@ -4,6 +4,7 @@ from persona import *
 from reporte import *
 from oficio import *
 from so import *
+
 class main():
 	#constructor 
 	def __init__(self):
@@ -21,6 +22,8 @@ class main():
 		self.Bmenu = Menu(self.winp)
 		
 		
+		
+		
         # CREAMOS LOS MENU 
 		self.mnuReportes = Menu(self.Bmenu, tearoff=0)
 		self.mnuReportes.config(bg = 'black')
@@ -32,10 +35,13 @@ class main():
         
 		#PERSONAS
 		self.mnuPersonas.add_command(label='ALTA PERSONAS', command = self.abrirABMper)
-		self.mnuPersonas.add_command(label='CONSULTAR PERSONAS')
+		self.mnuPersonas.add_command(label='CONSULTAR INHABILITADO')
 		
         #OFICIOS
-		self.mnuOficio.add_command(label='ALTA OFICIOS', command = self.AbrirOficio)
+		self.mnuOficio.add_command(label='Inhabilitar', command 
+		
+		
+		= self.AbrirOficio)
 
         #REPORTES
 		self.mnuReportes.add_command(label='GENERAR REPORTE')
@@ -53,8 +59,17 @@ class main():
 		self.winp.resizable(0,0)
 	
 		self.winp.config(bg = 'black')
+		
+		#self.winp.attributes('-fullscreen',True)
+
+		#self.winp.bind("<F11>", lambda event: self.winp.attributes("-fullscreen",
+        #                            not self.winp.attributes("-fullscreen")))
+		#self.winp.bind("<Escape>", lambda event: self.winp.attributes("-fullscreen", False))
+		
+		
+		
 		self.winp.mainloop()
-		#self.opcion = 0
+		
 		
 
 	#metodos 
