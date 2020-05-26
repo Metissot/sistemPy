@@ -15,8 +15,8 @@ class oficio():
 		
 		
 		self.win.title('Alta de Oficios')
-		self.win.geometry('800x600')
-		self.win.config(padx = 80, pady = 20, bg = '', bd = 1)
+		self.win.geometry('700x500')
+		self.win.config(padx = 0, pady = 0, bg = '', bd = 1)
 		self.win.config(bg = '#303030')
 		
 		
@@ -30,7 +30,7 @@ class oficio():
 		
 		#Frame1 (contenedor)
 		self.Lframe1 = LabelFrame(self.win, text='', bd = 2, bg = fondo )
-		self.Lframe1.grid(row = 0, column = 0 , sticky = W+E, pady = 0, padx = 95)
+		self.Lframe1.grid(row = 0, column = 0 , sticky = W+E, pady = 0, padx = 0)
 		
 		
 		#Caja de texto Documento Persona
@@ -57,7 +57,7 @@ class oficio():
 
 		#Frame2 (contenedor)
 		self.Lframe = LabelFrame(self.win, text='Inhabilitar', bd = 3,  bg = fondo, fg= Col_let)
-		self.Lframe.grid(row = 5, column= 0, sticky = W+E,  pady = 0, padx = 95)
+		self.Lframe.grid(row = 5, column= 0, sticky = W+E,  pady = 0, padx = 0)
 		
 
 		#Caja de texto fecha_of
