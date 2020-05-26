@@ -11,8 +11,8 @@ class main():
 		self.winp = Tk()
 		self.winp.title('SISTEMA DE CONSULTAS DE INHABILITADOS')
 		self.winp.geometry('800x600')
+		self.winp.config(bg = '#0087FF')
         
-
 		#imagen de fondo
 		self.Imagebg = PhotoImage(file='T148.gif')
 		self.LblFondo = Label(self.winp, image = self.Imagebg, bd = 0)
