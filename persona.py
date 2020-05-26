@@ -10,53 +10,59 @@ class persona():
 		self.win = Tk()
 		self.win.title('ABM PERSONAS')
 		self.win.geometry('480x350')
-		self.win.config(pady = 50 , padx = 80)
+		self.win.config(bg = '#303030')
+		
+		fondo = '#303030'
+		txtFondo = 'grey'
+		Col_let = 'snow'
+		TxtPadx = 5
+		TxtPady = 5
 		
 		#creamos un frame (contenedor)
-		self.Lframe = LabelFrame(self.win, text='Alta Personas', pady = 5, padx = 5, bd = 1)
-		self.Lframe.grid(row = 0, column = 3)
+		self.Lframe = LabelFrame(self.win, text='Alta Personas', bd = 1, bg = fondo, fg = Col_let)
+		self.Lframe.grid(row = 0, column = 3, pady = 15, padx = 30)
 		
 		#Caja de texto Documento
-		self.LblDoc = Label(self.Lframe, text='Documento: * ')
-		self.LblDoc.grid(row=1, column= 1)
-		self.TxtDoc = Entry(self.Lframe)
-		self.TxtDoc.grid(row=1,column=2)
+		self.LblDoc = Label(self.Lframe, text='Documento: * ', bg = fondo, fg = Col_let)
+		self.LblDoc.grid(row=1, column= 1, padx = 10, sticky = "w")
+		self.TxtDoc = Entry(self.Lframe,width= 40, bg = txtFondo, fg = Col_let)
+		self.TxtDoc.grid(row=1,column=2, pady = 10, padx = 10 , sticky = "w")
 		
 		# caja de texto Apellido 
-		self.LblApe = Label(self.Lframe, text='Apellido: * ')
-		self.LblApe.grid(row=3, column= 1)
-		self.TxtApe = Entry(self.Lframe)
-		self.TxtApe.grid(row=3,column=2)
+		self.LblApe = Label(self.Lframe, text='Apellido: * ', bg = fondo, fg = Col_let)
+		self.LblApe.grid(row=3, column= 1, padx = 10, sticky = "w")
+		self.TxtApe = Entry(self.Lframe, width= 40, bg = txtFondo, fg = Col_let)
+		self.TxtApe.grid(row=3,column=2, pady = 10, padx = 10, sticky = "w")
 		
 		# caja de texto Nombre 
-		self.LblNom = Label(self.Lframe, text='Nombre: * ')
-		self.LblNom.grid(row=5, column= 1)
-		self.TxtNom = Entry(self.Lframe)
-		self.TxtNom.grid(row=5,column=2)
+		self.LblNom = Label(self.Lframe, text='Nombre: * ', bg = fondo, fg = Col_let)
+		self.LblNom.grid(row=5, column= 1, padx = 10, sticky = "w")
+		self.TxtNom = Entry(self.Lframe, width= 40, bg = txtFondo, fg = Col_let)
+		self.TxtNom.grid(row=5,column=2, pady = 10, padx = 10, sticky = "w")
 		
 		# caja de texto lICENCIA 
-		self.LblAre = Label(self.Lframe, text='N Licencia de Conducir :  ')
-		self.LblAre.grid(row=7, column= 1)
-		self.TxtAre = Entry(self.Lframe)
-		self.TxtAre.grid(row=7,column=2)
+		self.LblAre = Label(self.Lframe, text='N Licencia de Conducir :  ', bg = fondo, fg = Col_let)
+		self.LblAre.grid(row=7, column= 1, padx = 10, sticky = "w")
+		self.TxtAre = Entry(self.Lframe, width= 40, bg = txtFondo, fg = Col_let)
+		self.TxtAre.grid(row=7,column=2, pady = 10, padx = 10, sticky = "w")
 		
 		# caja de domicilio  
-		self.LblDom = Label(self.Lframe, text='Domicilio :  ')
-		self.LblDom.grid(row=8, column= 1)
-		self.TxtDom = Entry(self.Lframe)
-		self.TxtDom.grid(row=8,column=2)
+		self.LblDom = Label(self.Lframe, text='Domicilio :  ', bg = fondo, fg = Col_let)
+		self.LblDom.grid(row=8, column= 1, padx = 10, sticky = "w")
+		self.TxtDom = Entry(self.Lframe, width= 40, bg = txtFondo, fg = Col_let)
+		self.TxtDom.grid(row=8,column=2, pady = 10, padx = 10, sticky = "w")
 		
 		# caja de contacto  
-		self.LblCon = Label(self.Lframe, text='Contacto :  ')
-		self.LblCon.grid(row=9, column= 1)
-		self.TxtCon = Entry(self.Lframe)
-		self.TxtCon.grid(row=9,column=2)
+		self.LblCon = Label(self.Lframe, text='Contacto :  ', bg = fondo, fg = Col_let)
+		self.LblCon.grid(row=9, column= 1, padx = 10, sticky = "w")
+		self.TxtCon = Entry(self.Lframe, width= 40, bg = txtFondo, fg = Col_let)
+		self.TxtCon.grid(row=9,column=2, pady = 10, padx = 10, sticky = "w")
 		
 		#creamos Boton
 		self.BtnGraba = ttk.Button(self.Lframe, text='Grabar', command = self.VerifTxt)
-		self.BtnGraba.grid(row = 10, column = 2, columnspan = 2, sticky = W + E)
+		self.BtnGraba.grid(row = 10, column = 1, columnspan = 2, sticky = W + E, pady = 15)
 		
-		self.LblInfo = Label(self.Lframe, text='')
+		self.LblInfo = Label(self.Lframe, text='', fg = 'red', bg = fondo)
 		self.LblInfo.grid(row=11, column= 2)
 		
 		

@@ -15,7 +15,7 @@ class oficio():
 		
 		
 		self.win.title('Alta de Oficios')
-		self.win.geometry('700x500')
+		self.win.geometry('800x600')
 		self.win.config(padx = 0, pady = 0, bg = '', bd = 1)
 		self.win.config(bg = '#303030')
 		
@@ -23,20 +23,21 @@ class oficio():
 		# colores formulario 
 		
 		fondo = '#303030'
-		Col_let = 'white'
+		txtFondo = 'grey'
+		Col_let = 'snow'
 		TxtPadx = 5
 		TxtPady = 5
 		
 		
 		#Frame1 (contenedor)
-		self.Lframe1 = LabelFrame(self.win, text='', bd = 2, bg = fondo )
-		self.Lframe1.grid(row = 0, column = 0 , sticky = W+E, pady = 0, padx = 0)
+		self.Lframe1 = LabelFrame(self.win, text='', bd = 1, bg = fondo )
+		self.Lframe1.grid(row = 0, column = 0 , sticky = W+E, pady = 20, padx = 150)
 		
 		
 		#Caja de texto Documento Persona
 		self.LbDni_In = Label(self.Lframe1, text='DNI del Infractor: * ', bg = fondo, fg= Col_let)
 		self.LbDni_In.grid(row=1, column= 0, sticky = 'w')
-		self.TxtDni_In = Entry(self.Lframe1,bg = fondo, fg= Col_let)
+		self.TxtDni_In = Entry(self.Lframe1,bg = txtFondo, fg= Col_let)
 		self.TxtDni_In.grid(row=1,column=1, padx = 5)
 				
 		#Caja de texto Persona
@@ -56,8 +57,8 @@ class oficio():
 
 
 		#Frame2 (contenedor)
-		self.Lframe = LabelFrame(self.win, text='Inhabilitar', bd = 3,  bg = fondo, fg= Col_let)
-		self.Lframe.grid(row = 5, column= 0, sticky = W+E,  pady = 0, padx = 0)
+		self.Lframe = LabelFrame(self.win, text='Inhabilitar', bd = 1,  bg = fondo, fg= Col_let)
+		self.Lframe.grid(row = 5, column= 0, sticky = W+E,  pady = 0, padx = 150)
 		
 
 		#Caja de texto fecha_of
@@ -76,13 +77,13 @@ class oficio():
 		#Caja de texto Numero Acta
 		self.LbNActa = Label(self.Lframe, text='Numero de acta: * ',  bg = fondo, fg= Col_let)
 		self.LbNActa.grid(row=3, column= 1, sticky = "w", pady = 10, padx = 10)
-		self.TxtNActa = Entry(self.Lframe, width= 40,bg = fondo, fg=Col_let)
+		self.TxtNActa = Entry(self.Lframe, width= 40,bg = txtFondo, fg=Col_let)
 		self.TxtNActa.grid(row=3,column=2, sticky = "w")
 		
 		#Caja de texto Numero Causa
 		self.LbNCau = Label(self.Lframe, text='Numero de Causa: * ',  bg = fondo, fg= Col_let)
 		self.LbNCau.grid(row=4, column= 1, sticky = "w", pady = 10, padx = 10)
-		self.TxtNCau = Entry(self.Lframe, width= 40,bg = fondo, fg=Col_let)
+		self.TxtNCau = Entry(self.Lframe, width= 40,bg = txtFondo, fg=Col_let)
 		self.TxtNCau.grid(row=4,column=2,  sticky = "w")
 		
 		#Caja de texto Fecha Resolucion
@@ -94,7 +95,7 @@ class oficio():
 		#Caja de texto Numero Resolucion
 		self.LbN_Re = Label(self.Lframe, text='Numero Resolucion: * ',  bg = fondo, fg= Col_let)
 		self.LbN_Re.grid(row=6, column= 1, sticky = "w", pady = 10, padx = 10)
-		self.TxtN_Re = Entry(self.Lframe, width= 40,bg = fondo, fg=Col_let)
+		self.TxtN_Re = Entry(self.Lframe, width= 40,bg = txtFondo, fg=Col_let)
 		self.TxtN_Re.grid(row=6,column=2,  sticky = "w")
 		
 		#Caja de texto Fecha inicio Inhabilitacion
@@ -198,5 +199,5 @@ class oficio():
 
 
 
-ofi = oficio()
+#ofi = oficio()
 

@@ -10,7 +10,7 @@ class main():
 	def __init__(self):
 		self.winp = Tk()
 		self.winp.title('SISTEMA DE CONSULTAS DE INHABILITADOS')
-		self.winp.geometry('800x600')
+		self.winp.geometry('1024x720')
 		self.winp.config(bg = '#0087FF')
         
 		#imagen de fondo
