@@ -59,11 +59,11 @@ class persona():
 		self.TxtCon.grid(row=9,column=2, pady = 10, padx = 10, sticky = "w")
 		
 		#creamos Boton
-		self.BtnGraba = ttk.Button(self.Lframe, text='Grabar', command = self.VerifTxt)
-		self.BtnGraba.grid(row = 10, column = 1, columnspan = 2, sticky = W + E, pady = 15)
+		self.BtnGraba = ttk.Button(self.Lframe, text='Grabar', command = self.VerifTxt, width = 40)
+		self.BtnGraba.grid(row = 10, column = 2, columnspan = 2 , pady = 15)
 		
 		self.LblInfo = Label(self.Lframe, text='', fg = 'red', bg = fondo)
-		self.LblInfo.grid(row=11, column= 2)
+		self.LblInfo.grid(row=10, column= 1)
 		
 		
 		self.TxtDoc.focus()

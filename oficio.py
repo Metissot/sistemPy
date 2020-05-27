@@ -15,7 +15,7 @@ class oficio():
 		
 		
 		self.win.title('Alta de Oficios')
-		self.win.geometry('800x600')
+		self.win.geometry('500x500')
 		self.win.config(padx = 0, pady = 0, bg = '', bd = 1)
 		self.win.config(bg = '#303030')
 		
@@ -31,23 +31,23 @@ class oficio():
 		
 		#Frame1 (contenedor)
 		self.Lframe1 = LabelFrame(self.win, text='', bd = 1, bg = fondo )
-		self.Lframe1.grid(row = 0, column = 0 , sticky = W+E, pady = 20, padx = 150)
+		self.Lframe1.grid(row = 0, column = 0 , sticky = W+E, pady = 5, padx = 30)
 		
 		
 		#Caja de texto Documento Persona
 		self.LbDni_In = Label(self.Lframe1, text='DNI del Infractor: * ', bg = fondo, fg= Col_let)
-		self.LbDni_In.grid(row=1, column= 0, sticky = 'w')
-		self.TxtDni_In = Entry(self.Lframe1,bg = txtFondo, fg= Col_let)
-		self.TxtDni_In.grid(row=1,column=1, padx = 5)
+		self.LbDni_In.grid(row=1, column= 0)
+		self.TxtDni_In = Entry(self.Lframe1,bg = txtFondo, fg= Col_let, width = 30)
+		self.TxtDni_In.grid(row=1,column=1, padx = 0)
 				
 		#Caja de texto Persona
-		self.TxtApeNom = Entry(self.Lframe1, width= 40,bg = fondo, fg = 'yellow', bd = 0)
-		self.TxtApeNom.grid(row=2,column=2, pady = 10)
+		self.TxtApeNom = Entry(self.Lframe1, width= 31,bg = fondo, fg = 'yellow', bd = 0)
+		self.TxtApeNom.grid(row=2,column=1, pady = 10)
 		
 				
 		#Boton 
-		self.BtnGraba = ttk.Button(self.Lframe1, text='Buscar', style='Fun.TButton', command = self.VerifDNI)
-		self.BtnGraba.grid(row = 1, column = 2, columnspan = 2, sticky = W + E)
+		self.BtnGraba = ttk.Button(self.Lframe1, text='Buscar', style='Fun.TButton', command = self.VerifDNI, width = 19)
+		self.BtnGraba.grid(row = 1, column = 2)
 		
 		#label informacion 
 		self.LbInfo = Label(self.Lframe1, text='', bg = fondo, fg= 'RED')
@@ -58,7 +58,7 @@ class oficio():
 
 		#Frame2 (contenedor)
 		self.Lframe = LabelFrame(self.win, text='Inhabilitar', bd = 1,  bg = fondo, fg= Col_let)
-		self.Lframe.grid(row = 5, column= 0, sticky = W+E,  pady = 0, padx = 150)
+		self.Lframe.grid(row = 5, column= 0, sticky = W+E,  pady = 5, padx = 30)
 		
 
 		#Caja de texto fecha_of
@@ -113,7 +113,7 @@ class oficio():
 		
 		
 		#Boton 
-		self.BtnGraba = ttk.Button(self.Lframe, text='Inhabilitar', command = self.InHabilitarPorBoton, width = 50)
+		self.BtnGraba = ttk.Button(self.Lframe, text='Inhabilitar', command = self.InHabilitarPorBoton, width = 40)
 		self.BtnGraba.grid(row = 9, column = 2, pady = 5)
 		self.TxtDni_In.focus()
 
